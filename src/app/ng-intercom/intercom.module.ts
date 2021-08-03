@@ -9,18 +9,15 @@ import { IntercomTrackEventDirective } from './directives/track-event.directive'
 import { Intercom } from './intercom/intercom'
 import { IntercomConfig } from './shared/intercom-config'
 
-
 @NgModule({
-  imports: [
-    RouterModule
-  ],
+  imports: [RouterModule],
   declarations: [
     IntercomHideDirective,
     IntercomShowMessagesDirective,
     IntercomShowNewMessageDirective,
     IntercomShowDirective,
     IntercomShutdownDirective,
-    IntercomTrackEventDirective
+    IntercomTrackEventDirective,
   ],
   exports: [
     IntercomHideDirective,
@@ -28,21 +25,15 @@ import { IntercomConfig } from './shared/intercom-config'
     IntercomShowNewMessageDirective,
     IntercomShowDirective,
     IntercomShutdownDirective,
-    IntercomTrackEventDirective
+    IntercomTrackEventDirective,
   ],
-  providers: [
-    Intercom,
-    IntercomConfig
-  ]
+  providers: [Intercom, IntercomConfig],
 })
 export class IntercomModule {
-  static forRoot(config: IntercomConfig): ModuleWithProviders {
+  static forRoot(config: IntercomConfig): ModuleWithProviders<IntercomModule> {
     return {
       ngModule: IntercomModule,
-      providers: [
-        Intercom,
-        { provide: IntercomConfig, useValue: config },
-      ]
+      providers: [Intercom, { provide: IntercomConfig, useValue: config }],
     }
   }
 }
